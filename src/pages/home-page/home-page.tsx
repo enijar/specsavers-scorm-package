@@ -1,10 +1,11 @@
 import React from "react";
 import * as Style from "@/pages/home-page/home-page.styles.ts";
+import Heading from "@/components/heading/heading.tsx";
 
 export default function HomePage() {
   return (
     <Style.HomePageWrapper>
-      <h1>Home Page</h1>
+      <Heading variant="h1">Home Page</Heading>
     </Style.HomePageWrapper>
   );
 }
