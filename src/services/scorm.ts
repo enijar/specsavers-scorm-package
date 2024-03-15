@@ -1,13 +1,20 @@
-import { scorm as api } from "@gamestdio/scorm";
+import {scorm as api} from "@gamestdio/scorm";
 
 // For debugging
 (window as any).SCORM_API = api;
 
-api.configure({ version: "2004", handleExitMode: true, debug: true });
+api.configure({version: "2004", handleExitMode: true, debug: true});
 
 export const scorm = {
   initialize() {
     api.initialize();
+
+    function onBeforeUnload() {
+      scorm.terminate();
+    }
+
+    window.removeEventListener("beforeunload", onBeforeUnload);
+    window.addEventListener("beforeunload", onBeforeUnload);
   },
   get<T = any>(key: string, defaultValue?: T) {
     const parse = (value: string) => {
